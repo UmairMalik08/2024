@@ -1,4 +1,5 @@
-from numpy import sqrt, sin, cos, tan, arcsin, linspace, radians, degrees, reciprocal, around
+from numpy import linspace, reciprocal, around
+from math import sqrt, sin, cos, tan, asin, radians, degrees
 import matplotlib.pyplot as plt
 
 
@@ -29,7 +30,7 @@ def original_line(initial_velocity, gravity, l_a_r, height):
   return(x_coords, y_coords, time_taken)
 
 def maximised_lin(initial_velocity, gravity, height):
-  max_angle = arcsin(reciprocal(sqrt(2 + (2 * gravity * height / initial_velocity**2))))
+  max_angle = asin(reciprocal(sqrt(2 + (2 * gravity * height / initial_velocity**2))))
   launch_range = (
     (initial_velocity**2 / gravity) * sqrt(1 + (2 * gravity * height / initial_velocity**2)))
   time_taken = launch_range / (initial_velocity * cos(max_angle))

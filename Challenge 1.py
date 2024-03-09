@@ -1,4 +1,4 @@
-from numpy import sin, cos, radians
+from math import sin, cos, radians
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots()

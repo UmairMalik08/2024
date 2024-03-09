@@ -1,8 +1,9 @@
-from numpy import sqrt, tan, arctan, roots, linspace
+from numpy import roots, linspace
+from math import sqrt, tan, atan
 import matplotlib.pyplot as plt
 
 def low_ball(a, b, c, initial_velocity, height, target_x, gravity):
-  low_ball_radians = arctan(min(roots([a,b,c])))
+  low_ball_radians = atan(min(roots([a,b,c])))
   l_b_rad = low_ball_radians
   x_coords = linspace(0, target_x, 101)
   y_coords = []
@@ -12,7 +13,7 @@ def low_ball(a, b, c, initial_velocity, height, target_x, gravity):
   return(x_coords, y_coords)
 
 def high_ball(a, b, c, initial_velocity, height, target_x, gravity):
-  high_ball_radians = arctan(max(roots([a,b,c])))
+  high_ball_radians = atan(max(roots([a,b,c])))
   h_b_rad = high_ball_radians
   x_coords = linspace(0, target_x, 101)
   y_coords = []
@@ -22,7 +23,7 @@ def high_ball(a, b, c, initial_velocity, height, target_x, gravity):
   return(x_coords, y_coords)
 
 def min_ball(minimum_initial_velocity, height, target_x, target_y, gravity):
-  minimum_speed_radians = arctan((target_y + sqrt(target_x**2 + target_y**2))/ target_x)
+  minimum_speed_radians = atan((target_y + sqrt(target_x**2 + target_y**2))/ target_x)
   m_b_rad = minimum_speed_radians
   x_coords = linspace(0, target_x, 101)
   y_coords = []

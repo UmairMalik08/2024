@@ -1,4 +1,5 @@
-from numpy import sin, cos, tan, sqrt, linspace, radians
+from numpy import linspace
+from math import sin, cos, tan, sqrt, radians
 import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots()

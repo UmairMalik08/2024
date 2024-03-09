@@ -1,5 +1,8 @@
-from numpy import sqrt, sin, cos, tan, arcsin, linspace, radians, degrees, reciprocal, around
+from numpy import linspace, reciprocal
+from math import sqrt, sin, cos, tan, asin, radians, degrees, log
 import matplotlib.pyplot as plt
+
+
 
 
 fig, ax = plt.subplots()
@@ -29,7 +32,7 @@ def original_line(initial_velocity, gravity, l_a_r, height):
   return(x_coords, y_coords, time_taken)
 
 def maximised_lin(initial_velocity, gravity, height):
-  max_angle = arcsin(reciprocal(sqrt(2 + (2 * gravity * height / initial_velocity**2))))
+  max_angle = asin(reciprocal(sqrt(2 + (2 * gravity * height / initial_velocity**2))))
   launch_range = (
     (initial_velocity**2 / gravity) * sqrt(1 + (2 * gravity * height / initial_velocity**2)))
   time_taken = launch_range / (initial_velocity * cos(max_angle))
@@ -41,12 +44,26 @@ def maximised_lin(initial_velocity, gravity, height):
 
   return(x_coords, y_coords, max_angle, time_taken)
 
+def origin_start_dist(initial_velocity, gravity, l_a_r):
 
-orig_x_coords, orig_y_coords, orig_time = original_line(initial_velocity,gravity, l_a_r, height)
-max_x_coords, max_y_coords, max_angle, max_time= maximised_lin(initial_velocity, gravity, height)
+  distance = (initial_velocity**2/gravity ) * (  int(log((1 + sin(l_a_r))/cos(l_a_r))) * cos(l_a_r)**2 * sin(l_a_r))
+  return (distance)
 
-original_line = ax.plot(orig_x_coords, orig_y_coords, label = f"θ={around(degrees(l_a_r),2)} t={around(orig_time, 2)}s")
-maxed_line = ax.plot(max_x_coords, max_y_coords, label = f"θ={around(degrees(max_angle),2)} t={around(max_time, 2)}s")
-ax.legend([f"θ={around(degrees(l_a_r),2)} t={around(orig_time, 2)}s", f"θ={around(degrees(max_angle),2)} t={around(max_time, 2)}s"])
 
-plt.show()
+if height == 0: 
+
+  print(origin_start_dist(initial_velocity, gravity, l_a_r))
+
+
+
+
+
+
+# orig_x_coords, orig_y_coords, orig_time = original_line(initial_velocity,gravity, l_a_r, height)
+# max_x_coords, max_y_coords, max_angle, max_time= maximised_lin(initial_velocity, gravity, height)
+
+# original_line = ax.plot(orig_x_coords, orig_y_coords, label = f"l_a_r={around(degrees(l_a_r),2)} t={around(orig_time, 2)}s")
+# maxed_line = ax.plot(max_x_coords, max_y_coords, label = f"l_a_r={around(degrees(max_angle),2)} t={around(max_time, 2)}s")
+# ax.legend([f"l_a_r={around(degrees(l_a_r),2)} t={around(orig_time, 2)}s", f"l_a_r={around(degrees(max_angle),2)} t={around(max_time, 2)}s"])
+
+# plt.show()
